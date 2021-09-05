@@ -36,7 +36,7 @@ class Reader: Subscriber {
     }
     
     func update(message: String) {
-        print("\(name) received: \(message)")
+        print("\(name) received \(message)")
     }
 }
 
@@ -48,7 +48,7 @@ class NewspaperStore: Subscriber {
     }
     
     func update(message: String) {
-        print("\(location) newspaper stand received: \(message)")
+        print("\(location) newspaper stand received \(message)")
     }
 }
 
@@ -56,13 +56,17 @@ class NewspaperStore: Subscriber {
 let publisher = NewspaperPublisher()
 let david = Reader(name: "David")
 let james  = Reader(name: "James")
-let supermarket  = NewspaperStore(location: "Railway station")
-let bookshop  = NewspaperStore(location: "Canteen")
+let supermarket  = NewspaperStore(location: "Super market")
+let bookshop  = NewspaperStore(location: "Bookshop")
 
 publisher.subscribe(subscriber: david)
 publisher.subscribe(subscriber: james)
 publisher.subscribe(subscriber: supermarket)
 publisher.subscribe(subscriber: bookshop)
 publisher.unsubscribe(subscriber: james)
-publisher.notify(message: "Published newspaper")
+publisher.notify(message: "Daily Mail Newspaper")
 
+// --------- OUTPUT ---------
+// David received Daily Mail Newspaper
+// Super market newspaper stand received Daily Mail Newspaper
+// Bookshop newspaper stand received Daily Mail Newspaper
